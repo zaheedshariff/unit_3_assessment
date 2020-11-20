@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Unit 3 Assessment</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <h2> Tedious Tasks </h2>
+
+    <table> 
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Time</th>
+        <th>Person</th>
+        <th>Delete Task? </th>
+
+      </tr>
+    </thead>
+    {% if tasks %}
+    {% for task in tasks %}
+    <tbody>
+            
+        <tr>
+            <td>{{task.description}}</td>
+            <td>{{task.time}}</td>
+            <td>{{task.person}}</td>
+            <td><a href=""> X </a> </td>
+        </tr>
+        </tbody>
+        </table>     
+    {% endfor %}
+
+
+
+    {% else %}
+        <p>No Tasks!</p>
+    {% endif %}
+
+    <form action="{% url 'add_task' %}" method="post">
+        {% csrf_token %}
+        {{ task_form.as_p }}
+        <input type="submit" class="btn" value="Add Tasks">
+    </form>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
